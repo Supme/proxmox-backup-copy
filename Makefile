@@ -1,6 +1,6 @@
 .PHONY: build
 build:
-	go build -v ./
+	go build -ldflags "-s -w" ./
 
 .PHONY: test
 test:

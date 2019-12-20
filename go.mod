@@ -1,3 +1,3 @@
-module proxmox-copy-backup
+module proxmox-backup-copy
 
 go 1.13
