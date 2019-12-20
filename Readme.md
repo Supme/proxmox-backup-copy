@@ -1,6 +1,6 @@
 Copy Proxmox backup files to other destination
 
-```shell script
+```
 Usage of ./proxmox-backup-copy:
      -s string
          Source folder
