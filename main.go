@@ -196,20 +196,18 @@ func ParseName(name string) (bool, string, time.Time) {
 		return false, "", time.Time{}
 	}
 
-	if s[1] != "vma" {
+	if !stringsEqualFoldAny(s[1], "vma") {
 		return false, "", time.Time{}
 	}
 
 	if len(s) == 3 {
-		if s[2] != "gz" {
-			if s[2] != "lzo" {
-				return false, "", time.Time{}
-			}
+		if !stringsEqualFoldAny(s[2], "gz", "lzo", "zst") {
+			return false, "", time.Time{}
 		}
 	}
 
 	splitName := strings.Split(s[0], "-")
-	if len(splitName) != 5 || splitName[0] != "vzdump" || splitName[1] != "qemu" {
+	if len(splitName) != 5 || !stringsEqualFoldAny(splitName[0], "vzdump") || !stringsEqualFoldAny(splitName[1], "qemu") {
 		return false, "", time.Time{}
 	}
 
@@ -221,4 +219,13 @@ func ParseName(name string) (bool, string, time.Time) {
 	}
 
 	return true, machineID, backupTime
+}
+
+func stringsEqualFoldAny(s string, a ...string) bool {
+	for i := range a {
+		if strings.EqualFold(s, a[i]) {
+			return true
+		}
+	}
+	return false
 }

@@ -40,6 +40,13 @@ func TestParseName(t *testing.T) {
 		time.Date(2019, 12, 02, 20, 00, 02, 0, time.UTC),
 	)
 
+	c(
+		true,
+		"vzdump-qemu-102-2019_12_02-20_00_02.vma.zst",
+		"102",
+		time.Date(2019, 12, 02, 20, 00, 02, 0, time.UTC),
+	)
+
 	// dump log file
 	c(
 		false,
